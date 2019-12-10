@@ -20,6 +20,7 @@ exports.up = function(knex) {
     //     .defaultTo(1)
 
         //for project
+    tbl.increment()
     tbl.string('Make', 50)
         .notNullable()
     tbl.integer('VIN')
@@ -36,10 +37,10 @@ exports.up = function(knex) {
         .defaultTo(0)
     tbl.string('Transmission type', 200)
 
-    
+
   })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropIfTableExists('Cars')
+  return knex.schema.dropTableIfExists('Cars')
 };
