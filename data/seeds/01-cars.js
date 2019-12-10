@@ -1,10 +1,12 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('cars').truncate()
+  return (
+    knex('Cars')
+    .truncate()
     .then(function () {
       // Inserts seed entries
-      return knex('cars').insert([
+      return knex('Cars').insert([
         {
           Make: 'Ford',
           VIN : 123456,
@@ -28,5 +30,6 @@ exports.seed = function(knex) {
           
         }
       ]);
-    });
+    })
+    )
 };
