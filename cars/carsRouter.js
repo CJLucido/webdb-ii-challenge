@@ -1,6 +1,6 @@
 const express = require('express');
 
-const carDB = require('../data/car-dealer.db3')
+const carDB = require('../data/carDBConfig')
 
 const router = express.Router()
 
