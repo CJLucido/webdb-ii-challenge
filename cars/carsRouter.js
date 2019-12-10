@@ -4,6 +4,8 @@ const carDB = require('../data/carDBConfig')
 
 const router = express.Router()
 
+//create
+
 router.post('/', (req, res) => {
     //best practice is to abstract/capture req info to use elsewhere for readability/at-a-glance understanding of what it is supposed to be
     const newCar = req.body
@@ -25,6 +27,8 @@ router.post('/', (req, res) => {
         res.status(500).json({error: 'server POST issue'})
     })
 })
+
+//read
 
 router.get('/', (req, res)=>{
     carDB('cars')
@@ -54,6 +58,40 @@ router.get('/:id', validateId, (req, res)=>{
     })
 })
 
+//update
+
+router.put('/:id', validateId, (req, res)=>{
+    const carId = req.params.id
+    const carFacts = req.body
+
+    carDB('cars')
+    .where({id: carId})
+    .update(carFacts)
+    .then(count=>{
+        res.status(201).json({message: `Number of cars changed ${count}`})
+    })
+    .catch(err=>{
+        console.log("this is PUT car err", err)
+        res.status(500).json({error: "This is PUT car issue, server"})
+    })
+})
+
+//delete
+
+router.delete('/:id', validateId, (req,res)=>{
+    const carId = req.params.id
+
+    carDB('cars')
+    .where({id: carId})
+    .del()
+    .then(count=>{
+        res.status(200).json({message: `Number of cars deleted ${count}`})
+    })
+    .catch(err=>{
+        console.log("this is PUT car err", err)
+        res.status(500).json({error: "This is DEL car issue, server"})
+    })
+})
 
 //MIDDLEWARE
 
