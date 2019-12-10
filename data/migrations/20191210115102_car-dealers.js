@@ -20,7 +20,7 @@ exports.up = function(knex) {
     //     .defaultTo(1)
 
         //for project
-    tbl.increment()
+    tbl.increments()
     tbl.string('Make', 50)
         .notNullable()
     tbl.integer('VIN')
