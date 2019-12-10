@@ -38,7 +38,7 @@ router.get('/', (req, res)=>{
     })
 })
 
-router.get('/:id', (req, res)=>{
+router.get('/:id', validateId, (req, res)=>{
     const carId = req.params.id
 
     carDB('cars')
